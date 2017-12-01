@@ -22,7 +22,18 @@ Or install it yourself as:
 
 ## Usage
 
-To start sending emails with Postmark's templates, you will need to make some changes to the mailer classes themselves.
+To start sending emails with Postmark's templates, you will need to set up some minimal configuration, and then make some changes to the mailer classes themselves.
+
+### Configuration
+
+In `app/initializers/postmark_mailer.rb`, add the following configuration block:
+
+```ruby
+PostmarkMailer.configure do |config|
+  config.api_key = YOUR_POSTMARK_API_KEY # required
+  config.default_delivery_queue = :mailers # defaults to :default
+end
+```
 
 ### Defining Mailers
 

@@ -3,14 +3,15 @@ PATH
   specs:
     postmark_mailer (0.1.0)
       activejob (~> 4.2)
+      postmark
 
 GEM
   remote: https://rubygems.org/
   specs:
-    activejob (4.2.9)
-      activesupport (= 4.2.9)
+    activejob (4.2.10)
+      activesupport (= 4.2.10)
       globalid (>= 0.3.0)
-    activesupport (4.2.9)
+    activesupport (4.2.10)
       i18n (~> 0.7)
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
@@ -21,7 +22,11 @@ GEM
       activesupport (>= 4.2.0)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
+    json (2.1.0)
     minitest (5.10.3)
+    postmark (1.10.0)
+      json
+      rake
     rake (10.4.2)
     rspec (3.6.0)
       rspec-core (~> 3.6.0)

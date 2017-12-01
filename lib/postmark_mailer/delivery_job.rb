@@ -2,10 +2,10 @@ require "active_job"
 
 module PostmarkMailer
   class DeliveryJob < ActiveJob::Base
-    queue_as { ActionMailer::Base.deliver_later_queue_name }
+    queue_as { PostmarkMailer.configuration.delivery_queue }
 
     def perform(options)
-      PostmarkMailer::MessageDelivery.new(options).deliver_now
+      MessageDelivery.new(options).deliver_now
     end
   end
 end
