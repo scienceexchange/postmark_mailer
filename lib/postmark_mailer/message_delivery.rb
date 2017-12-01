@@ -3,7 +3,7 @@ module PostmarkMailer
     attr_accessor :client, :options
 
     def initialize(opts)
-      @client = Postmark::ApiClient.new(API_KEYS['postmarkapp'][Rails.env])
+      @client = Postmark::ApiClient.new(PostmarkMailer.configuration.api_key)
       @options = opts
     end
 

@@ -19,8 +19,6 @@ module PostmarkMailer
     private
 
       def mail(options)
-        options[:to] = Rails.env.production? ? options[:to] : 'staging@scienceexchange.com'
-        options[:from] = Mailer::NOTIFICATIONS
         PostmarkMailer::MessageDelivery.new(options)
       end
   end
