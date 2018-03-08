@@ -1,3 +1,5 @@
+require 'postmark'
+
 module PostmarkMailer
   class MessageDelivery
     attr_accessor :client, :options
