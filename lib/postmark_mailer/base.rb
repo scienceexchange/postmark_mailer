@@ -19,7 +19,13 @@ module PostmarkMailer
     private
 
       def mail(options)
-        PostmarkMailer::MessageDelivery.new(options)
+        if prevent_delivery?
+          NullDelivery.new(options)
+        else
+          MessageDelivery.new(options)
+        end
       end
+
+      def prevent_delivery?; end
   end
 end
