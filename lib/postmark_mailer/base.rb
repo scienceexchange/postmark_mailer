@@ -1,15 +1,17 @@
 module PostmarkMailer
   class Base
+    attr_accessor :action_name
+
     class << self
       private
 
       def respond_to_missing?(method, *)
-        self.new.respond_to?(method) || super
+        new.respond_to?(method) || super
       end
 
       def method_missing(method, *args)
         if respond_to_missing?(method)
-          self.new.public_send(method, *args)
+          new(method.to_s).public_send(method, *args)
         else
           super
         end
@@ -18,14 +20,18 @@ module PostmarkMailer
 
     private
 
-      def mail(options)
-        if prevent_delivery?
-          NullDelivery.new(options)
-        else
-          MessageDelivery.new(options)
-        end
-      end
+    def initialize(method_name = nil)
+      @action_name = method_name
+    end
 
-      def prevent_delivery?; end
+    def mail(options)
+      if prevent_delivery?
+        NullDelivery.new(options)
+      else
+        MessageDelivery.new(options)
+      end
+    end
+
+    def prevent_delivery?; end
   end
 end
