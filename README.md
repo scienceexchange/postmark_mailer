@@ -92,6 +92,34 @@ or, less optimally:
 MyCoolMailer.welcome(user).deliver_now
 ```
 
+### Preventing Delivery
+
+In some mailers, you may wish to prevent delivery based on some business logic. For instance, if you offer email preferences to your users, you may want to check their preferences and prevent delivery if they've disabled email notifications.
+
+To add mailer-wide logic, simply define a `prevent_delivery?` method in your mailer:
+
+```ruby
+class MyCoolMailer < PostmarkMailer::Base
+  def welcome(user)
+    @user = user
+    mail(
+      to: @user.email,
+      template_id: 123_456,
+      template_model: {
+        first_name: @user.first_name
+      }
+    )
+  end
+
+  private
+
+  def prevent_delivery?
+    # Substitute the line below with your own logic
+    @user.all_emails_disabled?
+  end
+end
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
