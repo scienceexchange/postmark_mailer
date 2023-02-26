@@ -26,7 +26,7 @@ GEM
     minitest (5.17.0)
     postmark (1.22.2)
       json
-    rake (10.5.0)
+    rake (13.0.6)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -49,7 +49,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.16)
   postmark_mailer!
-  rake (~> 10.0)
+  rake (~> 13.0)
   rspec (~> 3.0)
 
 BUNDLED WITH
